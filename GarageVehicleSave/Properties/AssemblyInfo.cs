@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
 [assembly: AssemblyTitle("GarageVehicleSave")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A plugin for RagePluginHook saving the vehicle you left in the mission row police stations garage")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("craftycram")]
 [assembly: AssemblyProduct("GarageVehicleSave")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]

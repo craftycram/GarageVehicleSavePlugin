@@ -6,14 +6,17 @@ namespace GarageVehicleSave
     {
         public static readonly InitializationFile INIFile = new InitializationFile(@"Plugins\GarageVehicleSave.ini");
 
-        public static readonly bool SpawnVehicleLeftOnLoad = INIFile.ReadBoolean("General", "SpawnVehicleLeftOnLoad", false);
-        public static readonly bool SpawnVehicleRightOnLoad = INIFile.ReadBoolean("General", "SpawnVehicleRightOnLoad", false);
+        public static readonly bool Debug = INIFile.ReadBoolean("General", "Debug", false);
+        public static readonly bool Repair = INIFile.ReadBoolean("General", "Repair", true);
 
-        public static readonly string SpawnVehicleNameLeft = INIFile.ReadString("General", "SpawnVehicleNameLeft", "");
-        public static readonly string SpawnVehicleNameRight = INIFile.ReadString("General", "SpawnVehicleNameRight", "");
+        public static readonly bool SpawnVehicleLeftOnLoad = INIFile.ReadBoolean("Spawning", "SpawnVehicleLeftOnLoad", false);
+        public static readonly bool SpawnVehicleRightOnLoad = INIFile.ReadBoolean("Spawning", "SpawnVehicleRightOnLoad", false);
 
-        public static readonly bool SpawnVehicleParkingLotOnLoad = INIFile.ReadBoolean("General", "SpawnVehicleParkingLotOnLoad", false);
-        public static readonly string SpawnVehicleNameParkingLot = INIFile.ReadString("General", "SpawnVehicleNameParkingLot", "");
+        public static readonly string SpawnVehicleNameLeft = INIFile.ReadString("Spawning", "SpawnVehicleNameLeft", "");
+        public static readonly string SpawnVehicleNameRight = INIFile.ReadString("Spawning", "SpawnVehicleNameRight", "");
+
+        public static readonly bool SpawnVehicleParkingLotOnLoad = INIFile.ReadBoolean("Spawning", "SpawnVehicleParkingLotOnLoad", false);
+        public static readonly string SpawnVehicleNameParkingLot = INIFile.ReadString("Spawning", "SpawnVehicleNameParkingLot", "");
 
     }
 }

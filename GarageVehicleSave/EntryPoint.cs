@@ -25,7 +25,7 @@ namespace GarageVehicleSave
                 Vehicle savedVehicleLeft = null;
                 Vehicle savedVehicleRight = null;
 
-                if(Config.SpawnVehicleLeftOnLoad)
+                if (Config.SpawnVehicleLeftOnLoad)
                 {
                     savedVehicleLeft = new Vehicle(Config.SpawnVehicleNameLeft, garageLeft, 90f);
                 }
@@ -35,7 +35,7 @@ namespace GarageVehicleSave
                 }
                 if (Config.SpawnVehicleParkingLotOnLoad)
                 {
-                    savedVehicleRight = new Vehicle(Config.SpawnVehicleNameParkingLot, parkingLot, 0f);
+                    new Vehicle(Config.SpawnVehicleNameParkingLot, parkingLot, 0f);
                 }
 
                 while (true)
@@ -86,7 +86,7 @@ namespace GarageVehicleSave
                     }
 
                     // Clean vehicles
-                    if (Game.LocalPlayer.Character.DistanceTo(garageMiddle) > 20f && Game.LocalPlayer.Character.DistanceTo(garageMiddle) < 50f)
+                    if (Game.LocalPlayer.Character.DistanceTo(garageMiddle) > 20f && Game.LocalPlayer.Character.DistanceTo(garageMiddle) < 50f && Config.Repair)
                     {
                         if (savedVehicleLeft != null && savedVehicleLeft.DistanceTo(garageLeft) < 2f)
                         {
@@ -106,7 +106,7 @@ namespace GarageVehicleSave
                         }
                     }
 
-                    if (Game.IsKeyDown(System.Windows.Forms.Keys.Enter))
+                    if (Game.IsKeyDown(System.Windows.Forms.Keys.Enter) && Config.Debug)
                     {
                         Game.DisplayNotification(Convert.ToString(Game.LocalPlayer.Character.Position.X) + ", " + Convert.ToString(Game.LocalPlayer.Character.Position.Y) + ", " + Convert.ToString(Game.LocalPlayer.Character.Position.Z) + ", " + Convert.ToString(Game.LocalPlayer.Character.Heading));
                         Game.LogTrivial(Convert.ToString(Game.LocalPlayer.Character.Position.X) + "f, " + Convert.ToString(Game.LocalPlayer.Character.Position.Y) + "f, " + Convert.ToString(Game.LocalPlayer.Character.Position.Z) + "f" + ", " + Convert.ToString(Game.LocalPlayer.Character.Heading) + "f");
