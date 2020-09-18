@@ -14,7 +14,7 @@ namespace GarageVehicleSave
 
                 Game.DisplayNotification("GarageVehiclePlugin loaded successfully");
                 Game.LogTrivial("GarageVehiclePlugin loaded successfully");
-                
+               
                 Vector3 garageRight = new Vector3(462.6767f, -1014.554f, 28.0658f);
                 Vector3 garageMiddle = new Vector3(463.0877f, -1016.823f, 28.08117f);
                 Vector3 garageLeft = new Vector3(463.2594f, -1019.51f, 28.10522f);
@@ -48,7 +48,7 @@ namespace GarageVehicleSave
                     // Vehicle LEFT
                     if (Game.LocalPlayer.Character.DistanceTo(garageLeft) < 2f)
                     {
-                        if (Game.LocalPlayer.Character.CurrentVehicle != null)
+                        if (Game.LocalPlayer.Character.CurrentVehicle != null && Game.LocalPlayer.Character.CurrentVehicle != savedVehicleLeft)
                         {
                             Game.DisplayNotification("Vehicle saved to left garage!");
                             savedVehicleLeft = Game.LocalPlayer.Character.CurrentVehicle;
@@ -68,7 +68,7 @@ namespace GarageVehicleSave
                     // Vehicle Right
                     if (Game.LocalPlayer.Character.DistanceTo(garageRight) < 2f)
                     {
-                        if (Game.LocalPlayer.Character.CurrentVehicle != null)
+                        if (Game.LocalPlayer.Character.CurrentVehicle != null && Game.LocalPlayer.Character.CurrentVehicle != savedVehicleRight)
                         {
                             Game.DisplayNotification("Vehicle saved to right garage!");
                             savedVehicleRight = Game.LocalPlayer.Character.CurrentVehicle;
@@ -83,7 +83,7 @@ namespace GarageVehicleSave
                         {
                             savedVehicleRight.MakePersistent();
                         }
-                    }
+                    } 
 
                     // Clean vehicles
                     if (Game.LocalPlayer.Character.DistanceTo(garageMiddle) > 20f && Game.LocalPlayer.Character.DistanceTo(garageMiddle) < 50f && Config.Repair)
