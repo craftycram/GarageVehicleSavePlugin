@@ -1,5 +1,7 @@
 ﻿using Rage;
 using System;
+using System.Net;
+using System.Threading;
 
 [assembly: Rage.Attributes.Plugin("GarageVehiclePlugin", Description = "Saves the vehicle you leave in the Mission Row police station.", Author = "craftycram")]
 namespace GarageVehicleSave
@@ -10,11 +12,52 @@ namespace GarageVehicleSave
         {
             GameFiber.StartNew(delegate
             {
-                //Game.DisplayHelp("Hello World!");
+                //Game.DisplayHelp("Hello World
+
+                Version currentVersion = new Version("1.0.1");
+                Version newVersion = new Version();
 
                 Game.DisplayNotification("GarageVehiclePlugin loaded successfully");
                 Game.LogTrivial("GarageVehiclePlugin loaded successfully");
-               
+
+                try
+                {
+                    Thread FetchVersionThread = new Thread(() =>
+                    {
+
+                        using (WebClient client = new WebClient())
+                        {
+                            try
+                            {
+                                string s = client.DownloadString("http://www.lcpdfr.com/applications/downloadsng/interface/api.php?do=checkForUpdates&fileId=29785&textOnly=1");
+
+                                newVersion = new Version(s);
+                            }
+                            catch (Exception e) { Game.LogTrivial("GarageVehicleSave: LSPDFR Update API down. Aborting checks."); }
+                        }
+                    });
+                    FetchVersionThread.Start();
+                    while (FetchVersionThread.ThreadState != System.Threading.ThreadState.Stopped)
+                    {
+                        GameFiber.Yield();
+                    }
+
+                    // compare the versions  
+                    if (currentVersion.CompareTo(newVersion) < 0)
+                    {
+                        Game.LogTrivial("GarageVehicleSave: Update Available for GarageVehicleSave. Installed Version " + currentVersion + "New Version " + newVersion);
+                        Game.DisplayNotification("~g~Update Available~w~ for ~b~GarageVehicleSave~w~.\nInstalled Version: ~y~" + currentVersion + "\n~w~New Version~y~ " + newVersion);
+                    }
+                }
+                catch (System.Threading.ThreadAbortException e)
+                {
+                    Game.LogTrivial("GarageVehicleSave: Error while checking for updates.");
+                }
+                catch (Exception e)
+                {
+                    Game.LogTrivial("GarageVehicleSave: Error while checking for updates.");
+                }
+
                 Vector3 garageRight = new Vector3(462.6767f, -1014.554f, 28.0658f);
                 Vector3 garageMiddle = new Vector3(463.0877f, -1016.823f, 28.08117f);
                 Vector3 garageLeft = new Vector3(463.2594f, -1019.51f, 28.10522f);
