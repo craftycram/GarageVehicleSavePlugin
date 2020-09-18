@@ -14,7 +14,7 @@ namespace GarageVehicleSave
             {
                 //Game.DisplayHelp("Hello World
 
-                Version currentVersion = new Version("1.0.1");
+                Version currentVersion = new Version("1.1.1");
                 Version newVersion = new Version();
 
                 Game.DisplayNotification("GarageVehiclePlugin " + currentVersion + " loaded successfully");
