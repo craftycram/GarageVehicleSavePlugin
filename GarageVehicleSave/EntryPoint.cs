@@ -18,7 +18,7 @@ namespace GarageVehicleSave
                 Version newVersion = new Version();
 
                 Game.DisplayNotification("GarageVehiclePlugin " + currentVersion + " loaded successfully");
-                Game.LogTrivial("GarageVehiclePlugin loaded successfully");
+                Game.LogTrivial("GarageVehiclePlugin " + currentVersion + " loaded successfully");
 
                 try
                 {
